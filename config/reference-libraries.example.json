@@ -1,0 +1,6 @@
+{
+  "readOnlyRoots": [
+    "F:\\xMovies\\4K"
+  ],
+  "notes": "Copy to reference-libraries.local.json and list real library roots. CineVault never deletes or writes here. For dev tests, use dev/library-copy/ or scripts/copy-library-sample.ps1."
+}

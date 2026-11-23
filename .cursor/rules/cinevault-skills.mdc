@@ -1,0 +1,25 @@
+---
+description: Always route CineVault work through installed skills (ui-skills + repo Tauri/OpenSpec).
+alwaysApply: true
+---
+
+# CineVault skill protocol
+
+Before **every task** and **verification** step:
+
+1. **UI / React / Tailwind** — `npx ui-skills start` or `npx ui-skills get <slug>` (prefer `ibelick/baseline-ui`, `dammyjay93/interface-design` for product UI).
+2. **Tauri Rust / IPC / plugins** — read the matching skill under `.claude/skills/` (e.g. `tauri-ipc`, `tauri-app-sql`, `tauri-app-dialog`, `tauri-app-file-system`).
+3. **OpenSpec / phased plan** — use `openspec-apply-change` or update `docs/IMPLEMENTATION_PLAN.md` when closing a task.
+
+Verification checklist after changes:
+
+- `cargo test` in `src-tauri`
+- `npm run build` at repo root
+- For UI changes, re-check against baseline-ui (h-dvh, tabular-nums, cn helper, no gratuitous animation)
+
+## Reference movie libraries
+
+- Paths in `config/reference-libraries.local.json` are **read-only** (no delete/write on disk).
+- Writable tests only under `dev/library-copy/` (use `scripts/copy-library-sample.ps1`).
+- **Only load folders needed to develop/test** — never enumerate full libraries in chat or agent shell (token cost).
+- Use `dev/library-copy/`, `maxNfoFiles` scan limit, or unit tests instead.
